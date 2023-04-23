@@ -13,7 +13,7 @@ A web application built with FastAPI to help senior software development manager
 1. Clone the repository:
 
 ```
-git clone https://github.com/yourusername/daily-self-evaluation-app.git
+git clone https://github.com/hobpond/daily-self-evaluation-app.git
 cd daily-self-evaluation-app
 ```
 
@@ -28,7 +28,7 @@ source venv/bin/activate
 pip install -r requirements.txt
 
 ```
-4. Update the `bigquery/config.json` file with your Google Cloud JSON key file path, project ID, dataset ID, and table ID.
+4. Copy the `bigquery/config-template.json` file to `bigquery/config.jon` and update it with your Google Cloud JSON key file path, project ID, dataset ID, and table ID.
 
 5. Create the BigQuery table by running the `bigquery/create_table.py` script:
 

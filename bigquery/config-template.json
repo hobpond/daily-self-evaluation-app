@@ -1,0 +1,6 @@
+{
+    "google_application_credentials": "YOUR_GCP_CREDS",
+    "project_id": "YOUR_GCP_PROJECT",
+    "dataset_id": "YOUR_DATASET",
+    "table_id": "YOUR_DESIRED_TABLE_NAME"
+}
