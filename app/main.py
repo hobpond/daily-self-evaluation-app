@@ -35,6 +35,11 @@ def insert_bigquery_record(record: dict):
     else:
         return False
 
+@app.get("/review")
+async def review_submissions(request: Request):
+    evaluations = bigquery_utils.fetch_evaluations()  # Function to fetch evaluations from BigQuery
+    return templates.TemplateResponse("review.html", {"request": request, "evaluations": evaluations})
+
 @app.post("/submit_evaluation/")
 async def submit_evaluation(evaluation_data: EvaluationData):
     # Prepare the data to be inserted into BigQuery

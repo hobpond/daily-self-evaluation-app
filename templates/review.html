@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <title>Review Submissions</title>
+</head>
+<body>
+<div class="container">
+    <h1>Review Submissions</h1>
+    <a class="button" href="/">Submit a new evaluation</a>
+    <div class="evaluations">
+        {% for evaluation in evaluations %}
+        <div class="evaluation-card">
+            <div class="card-header">
+                <h3>Evaluation #{{ loop.index }}</h3>
+                <p class="submission-date">Submitted on: {{ evaluation.timestamp.strftime('%Y-%m-%d %H:%M %Z') }}</p>
+            </div>
+            <div class="card-body">
+                <div class="evaluation-field">
+                    <h4 class="section-title">Expectations:</h4>
+                    <pre>{{ evaluation.expectations }}</pre>
+                </div>
+                <div class="evaluation-field">
+                    <h4 class="section-title">SMART Criteria:</h4>
+                    <pre>{{ evaluation.smart_criteria }}</pre>
+                </div>
+                <div class="evaluation-field">
+                    <h4 class="section-title">Communication Effectiveness:</h4>
+                    <pre>{{ evaluation.communication_effectiveness }}</pre>
+                </div>
+                <div class="evaluation-field">
+                    <h4 class="section-title">Team Performance:</h4>
+                    <pre>{{ evaluation.team_performance }}</pre>
+                </div>
+                <div class="evaluation-field">
+                    <h4 class="section-title">Feedback:</h4>
+                    <pre>{{ evaluation.feedback }}</pre>
+                </div>
+                <div class="evaluation-field">
+                    <h4 class="section-title">Growth Plan:</h4>
+                    <pre>{{ evaluation.growth_plan }}</pre>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+</body>
+</html>
