@@ -3,32 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daily Self-Evaluation Plan</title>
-    <!-- Add your CSS file reference here, if needed -->
     <link rel="stylesheet" href="/static/css/styles.css">
+    <title>Daily Self-Evaluation Form</title>
 </head>
 <body>
-    <h1>Daily Self-Evaluation Plan</h1>
-    <form action="http://localhost:8000/submit_evaluation/" method="POST">
+    <h1>Daily Self-Evaluation</h1>
+    <form id="evaluation-form" action="/submit_evaluation" method="post">
         <label for="expectations">Expectations:</label>
-        <textarea name="expectations" id="expectations" required></textarea><br>
+        <textarea name="expectations" id="expectations" placeholder="E.g., Clearly communicated project goals" required></textarea><br>
 
         <label for="smart_criteria">SMART Criteria:</label>
-        <textarea name="smart_criteria" id="smart_criteria" required></textarea><br>
+        <textarea name="smart_criteria" id="smart_criteria" placeholder="E.g., Set specific, measurable, achievable, relevant, and time-bound goals" required></textarea><br>
 
         <label for="communication_effectiveness">Communication Effectiveness:</label>
-        <textarea name="communication_effectiveness" id="communication_effectiveness" required></textarea><br>
+        <textarea name="communication_effectiveness" id="communication_effectiveness" placeholder="E.g., Actively listened and provided constructive feedback" required></textarea><br>
 
         <label for="team_performance">Team Performance:</label>
-        <textarea name="team_performance" id="team_performance" required></textarea><br>
+        <textarea name="team_performance" id="team_performance" placeholder="E.g., Fostered collaboration and encouraged team members" required></textarea><br>
 
         <label for="feedback">Feedback:</label>
-        <textarea name="feedback" id="feedback" required></textarea><br>
+        <textarea name="feedback" id="feedback" placeholder="Provide any additional feedback or notes here" required></textarea><br>
 
         <label for="growth_plan">Growth Plan:</label>
-        <textarea name="growth_plan" id="growth_plan" required></textarea><br>
+        <textarea name="growth_plan" id="growth_plan" placeholder="E.g., Identify areas of improvement and outline steps to achieve progress" required></textarea><br>
 
-        <button type="submit">Submit Evaluation</button>
+        <button type="submit">Submit</button>
     </form>
     <script src="/static/js/form_submit.js"></script>
 </body>

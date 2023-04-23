@@ -2,3 +2,4 @@
 */creds
 venv
 config.json
+*/__pycache__/
