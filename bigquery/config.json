@@ -1,0 +1,6 @@
+{
+    "google_application_credentials": "/Users/jleung/work/daily-self-evaluation-app/bigquery/jmtl-01-5b2b964eda3e.json",
+    "project_id": "jmtl-01",
+    "dataset_id": "daily_self_evaluation_data",
+    "table_id": "daily_self_evaluations"
+}

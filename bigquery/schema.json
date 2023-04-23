@@ -1,0 +1,50 @@
+[
+    {
+        "name": "id",
+        "type": "STRING",
+        "mode": "REQUIRED",
+        "description": "Unique identifier for the evaluation entry"
+    },
+    {
+        "name": "timestamp",
+        "type": "TIMESTAMP",
+        "mode": "REQUIRED",
+        "description": "Timestamp of when the evaluation was submitted"
+    },
+    {
+        "name": "expectations",
+        "type": "STRING",
+        "mode": "NULLABLE",
+        "description": "Expectations set for the team"
+    },
+    {
+        "name": "smart_criteria",
+        "type": "STRING",
+        "mode": "NULLABLE",
+        "description": "Adherence to SMART criteria"
+    },
+    {
+        "name": "communication_effectiveness",
+        "type": "STRING",
+        "mode": "NULLABLE",
+        "description": "Communication effectiveness"
+    },
+    {
+        "name": "team_performance",
+        "type": "STRING",
+        "mode": "NULLABLE",
+        "description": "Team performance"
+    },
+    {
+        "name": "feedback",
+        "type": "STRING",
+        "mode": "NULLABLE",
+        "description": "Feedback from team members"
+    },
+    {
+        "name": "growth_plan",
+        "type": "STRING",
+        "mode": "NULLABLE",
+        "description": "Growth plan"
+    }
+]

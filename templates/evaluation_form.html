@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Self-Evaluation Plan</title>
+    <!-- Add your CSS file reference here, if needed -->
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <h1>Daily Self-Evaluation Plan</h1>
+    <form action="http://localhost:8000/submit_evaluation/" method="POST">
+        <label for="expectations">Expectations:</label>
+        <textarea name="expectations" id="expectations" required></textarea><br>
+
+        <label for="smart_criteria">SMART Criteria:</label>
+        <textarea name="smart_criteria" id="smart_criteria" required></textarea><br>
+
+        <label for="communication_effectiveness">Communication Effectiveness:</label>
+        <textarea name="communication_effectiveness" id="communication_effectiveness" required></textarea><br>
+
+        <label for="team_performance">Team Performance:</label>
+        <textarea name="team_performance" id="team_performance" required></textarea><br>
+
+        <label for="feedback">Feedback:</label>
+        <textarea name="feedback" id="feedback" required></textarea><br>
+
+        <label for="growth_plan">Growth Plan:</label>
+        <textarea name="growth_plan" id="growth_plan" required></textarea><br>
+
+        <button type="submit">Submit Evaluation</button>
+    </form>
+</body>
+</html>
