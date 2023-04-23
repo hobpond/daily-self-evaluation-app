@@ -12,9 +12,21 @@ def create_bigquery_client():
     os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = config["google_application_credentials"]
     return bigquery.Client()
 
+config = load_config()
+client = create_bigquery_client()
+
+def insert_bigquery_record(record: dict):
+    table_id = f"{config['project_id']}.{config['dataset_id']}.{config['table_id']}"
+    table = client.get_table(table_id)
+    rows_to_insert = [record]
+    errors = client.insert_rows(table, rows_to_insert)
+
+    if errors == []:
+        return True
+    else:
+        return False
+
 def fetch_evaluations():
-    config = load_config()
-    client = create_bigquery_client()
     table_id = f"{config['project_id']}.{config['dataset_id']}.{config['table_id']}"
 
     table_ref = client.dataset(config['dataset_id']).table(table_id)

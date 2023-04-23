@@ -8,10 +8,6 @@ from google.cloud import bigquery
 from uuid import uuid4
 import datetime
 
-config = bigquery_utils.load_config()
-client = bigquery_utils.create_bigquery_client()
-table_id = f"{config['project_id']}.{config['dataset_id']}.{config['table_id']}"
-
 app = FastAPI()
 
 class EvaluationData(BaseModel):
@@ -22,18 +18,11 @@ class EvaluationData(BaseModel):
     feedback: str
     growth_plan: str
 
-# Initialize the BigQuery client
-client = bigquery.Client()
+# Mount the static files
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
-def insert_bigquery_record(record: dict):
-    table = client.get_table(table_id)
-    rows_to_insert = [record]
-    errors = client.insert_rows(table, rows_to_insert)
-
-    if errors == []:
-        return True
-    else:
-        return False
+# Configure Jinja2Templates
+templates = Jinja2Templates(directory="templates")
 
 @app.get("/review")
 async def review_submissions(request: Request):
@@ -55,16 +44,10 @@ async def submit_evaluation(evaluation_data: EvaluationData):
     }
 
     # Insert the data into BigQuery
-    if insert_bigquery_record(record):
+    if bigquery_utils.insert_bigquery_record(record):
         return {"message": "Evaluation submitted successfully", "data": evaluation_data}
     else:
         return {"message": "Error inserting data into BigQuery", "data": evaluation_data}
-
-# Mount the static files
-app.mount("/static", StaticFiles(directory="static"), name="static")
-
-# Configure Jinja2Templates
-templates = Jinja2Templates(directory="templates")
 
 # Serve the HTML form
 @app.get("/", response_class=HTMLResponse)
