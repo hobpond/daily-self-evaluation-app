@@ -1,5 +1,7 @@
 # Daily Self-Evaluation App
 
+Expermiment with using ChatGPT4 and Bing Chat to generate code. The suggestion on how to do a daily self evaluation and code is generated with ChatGPT4. General development and API lookups are done with Bing Chat.
+
 A web application built with FastAPI to help senior software development managers submit daily self-evaluations and track their growth. The application includes an HTML form for input and stores the submitted data in a Google BigQuery table.
 
 ## Prerequisites
