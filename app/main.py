@@ -1,33 +1,28 @@
+from app.model.evaluation_data import EvaluationData
 from bigquery import bigquery_utils
-from fastapi import FastAPI, Form, Request
+from fastapi import FastAPI, Request
+from fastapi_pagination import Page, Params, add_pagination, paginate
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from pydantic import BaseModel
+from starlette.datastructures import URL
 from google.cloud import bigquery
 from uuid import uuid4
 import datetime
 
 app = FastAPI()
 
-class EvaluationData(BaseModel):
-    expectations: str
-    smart_criteria: str
-    communication_effectiveness: str
-    team_performance: str
-    feedback: str
-    growth_plan: str
-
 # Mount the static files
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 # Configure Jinja2Templates
 templates = Jinja2Templates(directory="templates")
+templates.env.globals['URL'] = URL
 
-@app.get("/review")
-async def review_submissions(request: Request):
-    evaluations = bigquery_utils.fetch_evaluations()  # Function to fetch evaluations from BigQuery
-    return templates.TemplateResponse("review.html", {"request": request, "evaluations": evaluations})
+@app.get("/review", response_model=Page[EvaluationData], name="review")
+async def get_evaluations_paginated(request: Request, page: int = 1, size: int = 1):
+    evaluations = paginate(bigquery_utils.fetch_evaluations(), Params(size=size, page=page))
+    return templates.TemplateResponse("review.html", {"request": request, "evaluations": evaluations})    
 
 @app.post("/submit_evaluation/")
 async def submit_evaluation(evaluation_data: EvaluationData):
@@ -53,3 +48,5 @@ async def submit_evaluation(evaluation_data: EvaluationData):
 @app.get("/", response_class=HTMLResponse)
 async def get_form(request: Request):
     return templates.TemplateResponse("evaluation_form.html", {"request": request})
+
+add_pagination(app)

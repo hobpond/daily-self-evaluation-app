@@ -1,6 +1,7 @@
 import json
 import os
 from google.cloud import bigquery
+from app.model.evaluation_data import EvaluationData
 
 def load_config():
     with open("bigquery/config.json", "r") as f:
@@ -34,6 +35,10 @@ def fetch_evaluations():
     # Query to fetch all evaluations
     query = f"SELECT * FROM `{config['project_id']}.{config['dataset_id']}.{config['table_id']}` ORDER BY timestamp DESC"
     query_job = client.query(query)
-    evaluations = query_job.result()
+    evaluation_rows = query_job.result()
 
+    evaluations = []
+    for evaluationRow in evaluation_rows:
+        evaluation = EvaluationData.parse_obj(evaluationRow)
+        evaluations.append(evaluation)
     return evaluations
